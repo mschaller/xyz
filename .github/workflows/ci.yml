@@ -1,0 +1,26 @@
+name: ci
+on: push
+env:
+    java_version: '12'
+jobs:
+    ci:
+        name: ci
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+
+            - name: Setup Java
+              uses: actions/setup-java@v1.3.0
+              with:
+                java-version: '${{ env.java_version }}'
+
+            - uses: actions/cache@v2
+              with:
+                path: ~/.gradle/caches
+                key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+                restore-keys: |
+                  ${{ runner.os }}-gradle-
+
+            - name: Test
+              run: ./gradlew build
