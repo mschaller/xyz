@@ -1,3 +1,7 @@
+plugins {
+    id "org.sonarqube" version "2.7"
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'application'
@@ -12,10 +16,15 @@ dependencies {
     compile 'com.typesafe.akka:akka-http-jackson_2.12:10.1.9'
     compile 'com.typesafe.akka:akka-stream_2.12:2.6.0-M5'
     compile 'com.typesafe.akka:akka-persistence_2.12:2.6.0-M5'
+    compile 'com.typesafe.akka:akka-actor_2.12:2.6.0-M5'
+    compile 'com.typesafe.akka:akka-serialization-jackson_2.12:2.6.0-M5'
     compile 'org.iq80.leveldb:leveldb:0.7'
+
     testCompile 'com.typesafe.akka:akka-http-testkit_2.12:10.1.9'
+    testCompile 'com.typesafe.akka:akka-testkit_2.12:2.6.0-M5'
     testCompile 'junit:junit:4.12'
 }
+
 
 //mainClassName = "com.example.QuickstartServer"
 mainClassName = "com.orders.MainServer"
